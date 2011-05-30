@@ -1,0 +1,37 @@
+{% include "header.html" %}
+
+<div id="container">
+    <h3>{{qtype}} Search: {{query}}</h3>
+
+    {% if nodata %}
+    <p>No results found</p>
+    {% endif %}
+    
+    <ul>
+    {% ifequal qtype 'Client' %}
+        {% for item in items %}
+            <li><a href="/client/{{item.client_name}}">{{item.client_name}}</a> ({{item.num}})</li>
+        {% endfor %}
+    {% endifequal %}
+    
+    {% ifequal qtype 'Registrant' %}
+        {% for item in items %}
+            <li><a href="/registrant/{{item.registrant_name}}">{{item.registrant_name}}</a> ({{item.num}})</li>
+        {% endfor %}
+    {% endifequal %}
+
+    {% ifequal qtype 'Lobbyist' %}
+        {% for item in items %}
+            <li><a href="/lobbyist/{{item.lobbyist_name}}">{{item.lobbyist_name}}</a> ({{item.num}})</li>
+        {% endfor %}
+    {% endifequal %}
+
+    {% ifequal qtype 'Date' %}
+        {% for item in items %}
+            <li><a href="/date/{{item.client_name}}">{{item.client_name}}</a> ({{item.num}})</li>
+        {% endfor %}
+    {% endifequal %}
+    </ul>
+</div>
+
+{% include "footer.html" %}

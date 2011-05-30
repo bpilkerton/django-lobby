@@ -1,0 +1,49 @@
+{% include "header.html" %}
+
+<div id="container">
+    <h3>{{title}}</h3>
+    
+    <table id="data_table" class="tablesorter">
+    <thead>
+    <tr>
+        <th>Client</th>
+        <th>Registrant</th>
+        <th>Amount</th>
+        <th>Received Date</th>
+        <th>Filing Type</th>
+        <th>&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items.object_list %}
+        <tr>
+            <td><a href="/client/{{ item.client_name }}">{{ item.client_name }}</a></td>
+            <td><a href="/registrant/{{ item.registrant_name }}">{{ item.registrant_name }}</a></td>
+            <td nowrap>{{ item.amount }}</td>
+            <td nowrap>{{ item.received }}</td>
+            <td>{{ item.type }}</td>
+            <td nowrap><a href="/filing/{{item.filing_id}}">Report Detail</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if items.has_previous %}
+                <a href="?page={{ items.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ items.number }} of {{ items.paginator.num_pages }}.
+            </span>
+
+            {% if items.has_next %}
+                <a href="?page={{ items.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</div>
+
+{% include "footer.html" %}

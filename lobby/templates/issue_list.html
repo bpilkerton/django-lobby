@@ -1,0 +1,14 @@
+{% include "header.html" %}
+
+<div id="container">
+    <h3>Issues</h3>
+
+    <ul id="issues">
+    {% for item in items %}
+        <li class="issue"><a href="/issue/{{ item.issue_code }}">{{ item.issue_code }}</a>&nbsp;({{item.num}})</li>
+    {% endfor %}
+    </ul>
+
+</div>
+
+{% include "footer.html" %}

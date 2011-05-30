@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <title>{{title}} - WhoLobbies.us</title>
+    <link rel="shortcut icon" href="http://static.wholobbies.us/favicon.ico">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script> 
+    <script type="text/javascript" src="http://static.wholobbies.us/js/jquery.tablesorter.js"></script>
+    <link href="http://static.wholobbies.us/css/wholobbies.us.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://static.wholobbies.us/js/jquery-ui.js"></script>    
+
+    <script type="text/javascript">
+        $(function() {
+            $('#c1 > ul').tabs();
+        });
+
+        $(document).ready(function() { 
+            $("table").tablesorter(); 
+        });
+    </script>
+
+</head>
+
+<body>
+
+<div id="header"><a href="http://wholobbies.us">wholobbies.us</a>&nbsp;<a href="/about">about</a></div>
+
+<div id="menu">
+
+    <div id="c1">
+        <ul>
+        <li class="atabs"><a href="#s5"><span>Google</span></a></li>
+            <li class="atabs"><a href="#s1"><span>Client</span></a></li>
+            <li class="atabs"><a href="#s2"><span>Registrant</span></a></li>
+            <li class="atabs"><a href="#s3"><span>Lobbyist</span></a></li>
+            <li class="atabs"><a href="#s4"><span>Date</span></a></li>
+            <a href="/issues/"><span>Issues</span></a>
+        </ul>
+
+        <div id="s1">
+            <form id="client" method="POST" action="/search/">
+            <input type="hidden" name="qtype" id="qtype" value="Client" />
+            Client: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+
+            <div class="notes">Example: Microsoft</div>
+        </div>
+
+        <div id="s2">
+            <form id="registrant" method="POST" action="/search/">
+            <input type="hidden" name="qtype" id="qtype" value="Registrant" />
+            Registrant: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Example: Klein</div>
+        </div>
+
+        <div id="s3">
+            <form id="lobbyist" method="POST" action="/search/">
+            <input type="hidden" name="qtype" id="qtype" value="Lobbyist" />                
+            Lobbyist: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Example: Abramoff</div>
+        </div>
+
+        <div id="s4">
+            <form id="date" method="POST" action="/search/">
+            <input type="hidden" name="qtype" id="qtype" value="Date" />    
+            <input type="hidden" name="query" id="query" value="dummyvar" />
+            Dates: <input type="text" name="date_a" id="date_a" size="10" /> - 
+            <input type="text" name="date_b" id="date_b" size="10" />    
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Format: YYYY-MM-DD</div>
+        </div>
+
+        <div id="s5">
+
+        <form action="http://static.wholobbies.us/g.html" id="cse-search-box">
+          <div>
+            <input type="hidden" name="cx" value="" />
+            <input type="hidden" name="cof" value="" />
+            <input type="hidden" name="ie" value=" />
+            <input type="text" name="q" />
+            <input type="submit" name="sa" value="Search" />
+          </div>
+        </form>
+        <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+    </div>
+
+    </div>
+
+</div>

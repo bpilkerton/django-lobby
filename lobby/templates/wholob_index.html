@@ -1,0 +1,66 @@
+{% include "header_index.html" %}
+
+<div id="content">
+
+<h3 id="welcome">Search the US Senate Lobbying Database</h3><br />
+
+    <div id="c1i">
+        <ul>
+        <li><a href="#s5"><span>Google</span></a></li>
+        <li><a href="#s1"><span>Client</span></a></li>
+        <li><a href="#s2"><span>Registrant</span></a></li>
+        <li><a href="#s3"><span>Lobbyist</span></a></li>
+        <li><a href="#s4"><span>Date</span></a></li>
+        <a href="/issues/"><span>Issues</span></a>
+        </ul>
+
+        <div id="s1">
+            <form id="client" method="POST" action="/search/">{% csrf_token %}
+            <input type="hidden" name="qtype" id="qtype" value="Client" />
+            Client: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Example: Microsoft</div>
+        </div>
+        <div id="s2">
+            <form id="registrant" method="POST" action="/search/">{% csrf_token %}
+            <input type="hidden" name="qtype" id="qtype" value="Registrant" />
+            Registrant: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Example: Klein</div>
+        </div>
+        <div id="s3">
+            <form id="lobbyist" method="POST" action="/search/">{% csrf_token %}
+            <input type="hidden" name="qtype" id="qtype" value="Lobbyist" />                
+            Lobbyist: <input type="text" name="query" id="query" />
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Example: Abramoff</div>
+        </div>
+        <div id="s4">
+            <form id="date" method="POST" action="/search/">{% csrf_token %}
+            <input type="hidden" name="qtype" id="qtype" value="Date" />    
+            <input type="hidden" name="query" id="query" value="dummyvar" />
+            Dates: <input type="text" name="date_a" id="date_a" size="10" /> - 
+            <input type="text" name="date_b" id="date_b" size="10" />    
+            <input type="submit" value="Search" />
+            </form>
+            <div class="notes">Format: YYYY-MM-DD</div>
+        </div>
+        <div id="s5">
+            <form action="http://static.wholobbies.us/g.html" id="cse-search-box">
+            <div>
+                <input type="hidden" name="cx" value="" />
+                <input type="hidden" name="cof" value="" />
+                <input type="hidden" name="ie" value="" />
+                <input type="text" name="q" />
+                <input type="submit" name="sa" value="Search" />
+            </div>
+            </form>
+            <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

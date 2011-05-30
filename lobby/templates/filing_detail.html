@@ -1,0 +1,161 @@
+{% include "header.html" %}
+
+<div id="container">
+
+<div id="report">
+
+    <div id="summary">
+        <div id="summaryHead"><h3>Report Summary</h3></div>
+        <table id="sumTable">
+        <tbody>
+            <tr>
+                <td>Report Id:</td>
+                <td>{{items.filing_id}}</td>
+            </tr>
+            <tr>
+                <td>Received:</td>
+                <td>{{items.received}}</td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td>{{items.amount}}</td>
+            </tr>
+            <tr>
+                <td>Report Type:</td>
+                <td>{{items.type}}</td>
+            </tr>
+            <tr>
+                <td>Period:</td>
+                <td>{{items.period}}</td>
+            </tr>
+            <tr>
+                <td>Alternate Formats:</td>
+                <td>
+                 <a href="http://soprweb.senate.gov/index.cfm?event=getFilingDetails&filingID={{filing_id}}">PDF (Original Filing)</a>
+                  <!--nbsp;&nbsp;<a href="/filing/{{filing_id}}/xml">XML</a>-->
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+    <div id="client">
+        <h3>Client</h3>
+        <table>
+        <tbody>
+            <tr>
+                <td>Client Name:</td>
+                <td><a href="/client/{{items.client_name}}">{{items.client_name}}</a></td>
+            </tr>
+            <tr>
+                <td>Contact:</td>
+                <td>{{items.contact_fullname}}</td>
+            </tr>
+            <tr>
+                <td>Client Country:</td>
+                <td>{{items.client_country}}</td>
+            </tr>
+            <tr>
+                <td>Client State:</td>
+                <td>{{items.client_state}}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>    
+
+    <div id="registant">
+        <h3>Registrant</h3>    
+        <table>
+        <tbody>
+            <tr>
+                <td>Registrant Name:</td>
+                <td><a href="/registrant/{{items.registrant_name}}">{{items.registrant_name}}</a></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>{{items.address}}</td>
+            </tr>
+            <tr>
+                <td>Registrant Country:</td>
+                <td>{{items.registrant_country}}</td>            
+            </tr>
+        </tbody>
+        </table>
+    </div>    
+
+    <div id="lobbyists">
+        <h3>Lobbyists</h3>
+        <table>
+        <tbody>
+        {% for lob in lobs %}
+            <tr><td><a href="/lobbyist/{{ lob.lobbyist_name }}">{{ lob.lobbyist_name }}</a></td></tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    
+    <div id="issues">
+        <h3>Issues</h3>
+        <table id="isstab">
+        <tbody>
+        {% for issue in issues %}
+            <tr>
+                <td><a href="/issue/{{issue.issue_code}}">{{issue.issue_code}}</a></td>
+                <td>
+                    {% if issue.specific_issue %}
+                        {{issue.specific_issue}}
+                    {% else %}
+                        No Specific Issue Provided
+                    {%endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div id="agencies">
+        <h3>Government Agencies</h3>
+        <table>
+        <tbody>
+        {% for agency in agencies %}
+            <tr><td><a href="/agency/{{agency.gov_entity_name}}">{{agency.gov_entity_name}}</a></td></tr>
+        {% endfor %}
+        </table>
+        </tbody>
+    </div>
+    
+    <div id="orgs">
+        <h3>Affiliated Orgs</h3>
+        <table>    
+        <tbody>    
+        {% for org in orgs %}
+            <tr><td>{{org.affiliated_orgname}}</td><td>{{org.affiliated_orgcountry}}</td></tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    
+    <div id="foreign_entity">
+        <h3>Foreign Entity</h3>
+        <table>
+        <tbody>    
+        {% for entity in foreign_entities %}
+            <tr>
+                <td>Entity Name:</td>
+                <td>{{entity.foreign_entity_name}}</td>
+            </tr>
+            <tr>
+                <td>Entity Country:</td>
+                <td>{{entity.foreign_entity_country}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+</div>
+
+</div>
+
+{% include "footer.html" %}

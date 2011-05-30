@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+<div id="container">
+    <h3>{{qtype}} Search: {{date_a}} to {{date_b}}</h3>
+    
+    <table id="data_table" class="tablesorter">
+    <thead>
+    <tr>
+        <th>Client</th>
+        <th>Amount</th>
+        <th>Received Date</th>
+        <th>Filing Type</th>
+        <th>&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td><a href="/client/{{ item.client_name }}">{{ item.client_name }}</a></td>    
+            <td nowrap>{{ item.amount }}</td>
+            <td nowrap>{{ item.received }}</td>
+            <td>{{ item.type }}</td>
+            <td nowrap><a href="/filing/{{item.filing_id}}">Report Detail</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+{% include "footer.html" %}
